@@ -372,35 +372,18 @@ if saveplots == 1
   print("output/wealth-plot.png","-dpng");
 endif
 
-
-% now let's calculate the personal GDPs, ie the total flows
-% we will double count by using outward and inward flows since outside equilibrium they are not equal
-
-g = zeros(nrpoints,Sysdim);
-
-for h=1:nrpoints
-  for i=1:Sysdim
-    sum1 = 0; 
-    sum2 = 0;
-    for j=1:Sysdim
-      sum1 = sum1 + C(i,j)*V(h,i); %outward flow - expenditure
-      sum2 = sum2 + C(j,i)*V(h,j); %inward flow  - income
-    endfor
-    g(h,i) = sum1 + sum2; % note that both sums contribute with positive sign
-  endfor
-endfor
-
-%figure(2);
-%plot(t, g(:,1), t, g(:,2), t, g(:,3), t, g(:,4),t, g(:,5),t, g(:,6),t, g(:,7),t, g(:,8),t, g(:,9),t, g(:,10) );
-
 % we can now calculate the total GDP
 
 G = zeros(nrpoints,1);
 
 for h=1:nrpoints
+  sum = 0; 
   for i=1:Sysdim
-    G(h) = G(h) + (g(h,i) / 2); % discount the double counting
+    for j=1:Sysdim
+      sum = sum + C(i,j)*V(h,i); %outward flow - expenditure PoV
+    endfor
   endfor
+  G(h) = sum;
 endfor
 
 % plot total GDP , configure y axis for better appearance
