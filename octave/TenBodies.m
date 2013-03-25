@@ -198,7 +198,7 @@ S9 = [  0, 0, 0, 0, 0, 0, 0, 0, 0, 0  ;
 
 low=0.1;
 high=1;
-% increasing this simpathy will decrease the GDP (counter example!)
+% increasing this simpathy will decrease the equilibrium GDP (counter example!)
 delta=0.0;
 
 S9b = [  0   ,        low , low, low, low,    low, low,  low,   low, low ;
