@@ -198,19 +198,21 @@ S9 = [  0, 0, 0, 0, 0, 0, 0, 0, 0, 0  ;
 
 low=0.1;
 high=1;
-% increasing this simpathy will decrease the equilibrium GDP (counter example!)
+% increasing this simpathy will decrease the equilibrium GDP (counter example!) and increase Gini
 delta=0.0;
+% increasing this simpathy will increase the GDP and increase Gini
+delta2=0.1;
 
-S9b = [  0   ,        low , low, low, low,    low, low,  low,   low, low ;
-         high,        0   , low, low, low,    low, low,  low,   low, low ;
-         high,        high, 0  , low, low,    low, low,  low,   low, low ;
-         high,        high, high, 0  , low,   low, low,  low,   low, low ;
-         high,        high, high, high, 0 ,   low, low,  low,   low, low ;
-         high,        high, high, high, high, 0 ,   low,  low,  low, low ;
-         high,        high, high, high, high, high, 0  ,  low,  low, low ;
-         high,        high, high, high, high, high, high, 0,    low, low ;
-         high,        high, high, high, high, high, high, high, 0  , low ;
-         high+delta , high, high, high, high, high, high, high, high, 0  ];
+S9b = [  0   ,        low ,        low, low, low,    low, low,  low,   low, low ;
+         high,        0   ,        low, low, low,    low, low,  low,   low, low ;
+         high,        high,        0  , low, low,    low, low,  low,   low, low ;
+         high,        high,        high, 0  , low,   low, low,  low,   low, low ;
+         high,        high,        high, high, 0 ,   low, low,  low,   low, low ;
+         high,        high+delta2, high, high, high, 0 ,   low,  low,  low, low ;
+         high,        high+delta,  high, high, high, high, 0  ,  low,  low, low ;
+         high,        high,        high, high, high, high, high, 0,    low, low ;
+         high,        high,        high, high, high, high, high, high, 0  , low ;
+         high,        high,        high, high, high, high, high, high, high, 0  ];
 
 % assymetric popularity 
 % the second most popular player stops sharing so much (see delta) with the top contender...
