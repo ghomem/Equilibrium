@@ -8,7 +8,7 @@ clear all;
 
 global Sysdim=10;
 global C;
-interval = 3;  % time interval
+interval = 2;  % time interval
 nrpoints= floor(interval)*100;  % step for ODE solving, 100 pts per time units seems enough
 confidence = 1; % affects both time to equilibrium and GDP value
 ymargin = 10; % just a visual margin for plots
@@ -24,7 +24,8 @@ ACi = Ci * confidence;
 
 % initial condition
 
-V0=[ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 ];
+%V0=[ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 ];
+V0=[ 0, 15, 20, 40, 5, 5, 5, 2, 2, 6 ];
 
 % load definitions from a separate file
 
@@ -34,7 +35,7 @@ source("input.m");
 
 % choose the simpathy and awareness matrices for this simulation
 
-Sij = S1;
+Sij = S5b;
 Aij = A1;
 
 % initialize Cij
@@ -78,8 +79,7 @@ V=lsode("deq",V0,t); % ODE solver - obtains the saved value function V, uses mat
 % plot values, configure y axis for better appearance
 
 figure(1);
-%plot(t, V(:,1), t, V(:,2), t, V(:,3), t, V(:,4),t, V(:,5),t, V(:,6),t, V(:,7),t, V(:,8),t, V(:,9),t, V(:,10) );
-plot(t, V(:,1), t, V(:,2)); 
+plot(t, V(:,1), t, V(:,2), t, V(:,3), t, V(:,4),t, V(:,5),t, V(:,6),t, V(:,7),t, V(:,8),t, V(:,9),t, V(:,10) );
 title("Wealth acumulation");
 mylimit = max ( [ V(nrpoints,1) V(nrpoints,2) V(nrpoints,3) V(nrpoints,4) V(nrpoints,5) V(nrpoints,6) V(nrpoints,7) V(nrpoints,8) V(nrpoints,9) V(nrpoints,10) ] ) + ymargin;
 ylim([ 0 mylimit ]);
